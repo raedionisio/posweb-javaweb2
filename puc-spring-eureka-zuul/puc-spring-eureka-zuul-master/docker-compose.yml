@@ -1,0 +1,58 @@
+version: '3.3'
+
+services:
+
+  #############################################################
+  ######################### SERVICE ###########################
+  #############################################################
+
+  eureka-service:
+    image: 'rodrigofujioka/eureka-service:latest'
+    networks:
+      - fuji-network
+    ports:
+      - "8761:8761"
+
+  gateway-service:
+    image: 'rodrigofujioka/gateway-service:latest'
+    networks:
+      - fuji-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-service
+    environment:
+      EUREKA_URL: gateway-service
+      EUREKA_DEFAULT_ZONE: 'http://eureka-service:8761/eureka'
+
+  japao-service:
+    image: 'rodrigofujioka/japao-service:latest'
+    networks:
+      - fuji-network
+    ports:
+    - "8070:8070"
+    depends_on:
+      - eureka-service
+    environment:
+      EUREKA_URL: japao-service
+      EUREKA_DEFAULT_ZONE: 'http://eureka-service:8761/eureka'
+
+  brasil-service:
+    image: 'rodrigofujioka/brasil-service:latest'
+    networks:
+      - fuji-network
+    ports:
+      - "8060:8060"
+    depends_on:
+      - eureka-service
+    environment:
+      EUREKA_URL: brasil-service
+      EUREKA_DEFAULT_ZONE: 'http://eureka-service:8761/eureka'
+
+
+#############################################################
+######################### NETWORK ###########################
+#############################################################
+networks:
+  fuji-network:
+    driver: "bridge"

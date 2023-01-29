@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/posweb-javaweb1-master/demo.iml" filepath="$PROJECT_DIR$/posweb-javaweb1-master/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/posweb-javaweb1-israel.iml" filepath="$PROJECT_DIR$/.idea/posweb-javaweb1-israel.iml" />
+    </modules>
+  </component>
+</project>
